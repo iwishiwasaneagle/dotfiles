@@ -51,6 +51,6 @@ rm -rf fonts
 
 # Glava
 glava --copy-config
-rm -f ~/.config/glava/{bars.glsl,rc.glsl}
-ln dotfiles/{bars.glsl,rc.glsl} ~/.config/glava/
+rm -f ~/.config/glava/{circle.glsl,rc.glsl}
+ln dotfiles/{circle.glsl,rc.glsl} ~/.config/glava/
 ln dotfiles/glava.desktop ~/.config/autostart/
