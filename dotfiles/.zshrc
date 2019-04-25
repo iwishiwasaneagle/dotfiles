@@ -2,7 +2,6 @@
 #export PATH=/usr/bin:/usr/local/bin:${PATH}
 
 ZSH_TMUX_AUTOSTART="true"
-
 # Path to your oh-my-zsh installation.
   export ZSH="/home/jhewers/.oh-my-zsh"
 
@@ -10,7 +9,7 @@ ZSH_TMUX_AUTOSTART="true"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME=""bullet-train""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -41,7 +40,7 @@ ZSH_THEME="agnoster"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -108,9 +107,18 @@ alias copy="pwd|xclip -selection clipboard"
 # Flutter
 # export PATH="$PATH:/home/janhewers/opt/flutter/bin"
 
-if [ -z $TMUX ];
-then
-    tmux attach-session -t home || tmux new -t home
-fi
+#if [ -z $TMUX ];
+#then
+#    tmux attach-session -t home || tmux new -t home
+#fi
 
+
+PATH=~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin
+eval $(thefuck --alias)
 export EDITOR="/usr/bin/nano"
+alias vpnlist="nmcli con"
+alias vpnup="nmcli con up id uk1003.nordvpn.com.udp"
+alias vpndown="nmcli con down id uk1003.nordvpn.com.udp"
+
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias lc='colorls -lA --sd'

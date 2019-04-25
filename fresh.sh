@@ -11,10 +11,14 @@ sudo pacman -S zsh
 chsh -s $(which zsh)
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ln dotfiles/.zshrc ~/.zshrc
+wget https://raw.githubusercontent.com/caiogondim/bullet-train-oh-my-zsh-theme/master/bullet-train.zsh-theme -O ~/.oh-my-zsh/themes/bullet-train.zsh-theme
 
 # Install tmux and oh-my-tmux
 sudo pacman -S tmux
 ln dotfiles/.tmux.conf{,.local} $HOME
+chmod +x scripts/my_ip
+ln scripts/my_ip ~/.local/bin/
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # SSH
 sudo ln dotfiles/sshd_config /etc/ssh/sshd_config
@@ -22,6 +26,8 @@ sudo chown root:root dotfiles/sshd_config
 sudo chmod 644 dotfiles/sshd_config
 
 # Spotify
+sudo pacman -S snap snapd
+snap install spotify
 echo "Setting up lyrics engine and spotify CLI"
 sudo cp scripts/Spotify.sh /bin/sp
 sudo cp scripts/Lyrics.sh /bin/lyrics
@@ -49,8 +55,41 @@ cd fonts
 cd -
 rm -rf fonts
 
+# Awesome fonts
+git clone https://github.com/ryanoasis/nerd-fonts.git
+cd nerd-fonts
+./install.sh
+cd ..
+rm -rf nerd-fonts
+
 # Glava
-glava --copy-config
-rm -f ~/.config/glava/{circle.glsl,rc.glsl}
-ln dotfiles/{circle.glsl,rc.glsl} ~/.config/glava/
-ln dotfiles/glava.desktop ~/.config/autostart/
+#glava --copy-config
+#rm -f ~/.config/glava/{circle.glsl,rc.glsl}
+#ln dotfiles/{circle.glsl,rc.glsl} ~/.config/glava/
+#ln dotfiles/glava.desktop ~/.config/autostart/
+
+# Conky
+sudo pacman -S conky
+ln dotfiles/{conky.conf,conky_music.conf,conkyart.sh} ~/.config/conky
+#ln dotfiles/conky{,_music}.desktop ~/.config/autostart
+
+# NordVPN/OpenVPN
+sudo pacman -S openvpn ca-certificates
+cd /etc/openvpn
+sudo wget https://downloads.nordcdn.com/configs/archives/servers/ovpn.zip
+sudo unzip ovpn.zip
+sudo rm ovpn.zip
+sudo pacman -S networkmanager-openvpn
+
+# FUCK
+pip install fuck
+
+# .profile
+ln dotfiles/.profile ~/
+
+# disable mouse acceleration
+ln dotfiles/mouseAccelerationZero.desktop ~/.config/autostart/
+
+# colorls
+sudo pacman -S ruby
+gem install colorls
