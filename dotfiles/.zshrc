@@ -9,7 +9,7 @@ ZSH_TMUX_AUTOSTART="true"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME=""bullet-train""
+ZSH_THEME="bullet-train"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -115,10 +115,14 @@ alias copy="pwd|xclip -selection clipboard"
 
 PATH=~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin
 eval $(thefuck --alias)
-export EDITOR="/usr/bin/nano"
+export EDITOR="/usr/bin/vim"
 alias vpnlist="nmcli con"
 alias vpnup="nmcli con up id uk1003.nordvpn.com.udp"
 alias vpndown="nmcli con down id uk1003.nordvpn.com.udp"
 
 source $(dirname $(gem which colorls))/tab_complete.sh
 alias lc='colorls -lA --sd'
+
+cd() { 
+    builtin cd "$@" && ls
+}

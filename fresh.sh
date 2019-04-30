@@ -93,3 +93,9 @@ ln dotfiles/mouseAccelerationZero.desktop ~/.config/autostart/
 # colorls
 sudo pacman -S ruby
 gem install colorls
+
+# vim and vimrc
+sudo pacman -S vim
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+sh ~/.vim_runtime/install_awesome_vimrc.sh
+
