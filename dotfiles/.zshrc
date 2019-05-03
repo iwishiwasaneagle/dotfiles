@@ -1,7 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 #export PATH=/usr/bin:/usr/local/bin:${PATH}
 
-ZSH_TMUX_AUTOSTART="true"
+# ZSH_TMUX_AUTOSTART="true"
 # Path to your oh-my-zsh installation.
   export ZSH="/home/jhewers/.oh-my-zsh"
 
@@ -107,10 +107,10 @@ alias copy="pwd|xclip -selection clipboard"
 # Flutter
 # export PATH="$PATH:/home/janhewers/opt/flutter/bin"
 
-#if [ -z $TMUX ];
-#then
-#    tmux attach-session -t home || tmux new -t home
-#fi
+if [ -z $TMUX ];
+then
+    tmux attach-session -t home || tmux new -t home
+fi
 
 
 PATH=~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin
