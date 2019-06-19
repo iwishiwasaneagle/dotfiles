@@ -1,0 +1,43 @@
+#!/usr/bin/env python
+
+import pycountry
+import subprocess
+import os
+
+class VPN_Status:
+    def __init__(self):
+        info = subprocess.run(['nordvpn','status'], capture_output=True).stdout.decode("utf-8").split("\n")
+        self.status = None
+        self.country = None
+        self.country_code = None
+        self.IP = None
+        for c in info:
+            c = c.split(": ")
+            if c[0] == "Status":
+                self.status = c[1]
+            elif c[0] == "Country":
+                
+                countries = {}
+                for country in pycountry.countries:
+                    countries[country.name] = country.alpha_2
+
+                
+                self.country_code = countries.get(c[1], 'Unknown Code')
+                self.country = c[1]
+            elif c[0] == "Your new IP":
+                self.IP = c[1]
+    
+
+
+if __name__ == "__main__":
+    vpn_stat = VPN_Status()
+    
+    if vpn_stat.status == "Connected":
+        print(f"{vpn_stat.country_code}")
+        
+    elif vpn_stat.status == "Disconnected":
+        print(f"")
+        
+    else:
+        print("")
+    

@@ -1,0 +1,259 @@
+[settings]
+throttle-ms = 30
+throttle-limit = 5
+
+[bar/top]
+monitor = eDP1
+width = 100%
+height = 40
+enable-ipc=true
+
+background = #263238
+;#222222
+foreground = #eceff1
+;#eefafafa
+linecolor = #fba922
+
+;border-color = #ff0000
+;border-top = 2 
+border-top-color = 
+border-bottom = 0 
+border-bottom-color = #78909c
+;#333333 
+
+line-size = 2
+
+spacing = 3
+lineheight = 0
+padding-right = 4
+module-margin-left = 0
+module-margin-right = 6
+offset-x = 0%
+offset-y = 0%
+
+font-0 = NotoSans-Regular:size=20;2
+font-1 = MaterialIcons:size=20;2
+font-2 = TerminessTTF Nerd Font:size=20;2
+font-3 = WunconSiji:pixelsize=20;2
+font-4 = Font Awesome 5 Free:size=20;2
+
+modules-left = bspwm
+;modules-center = xwindow
+;modules-right = volume battery cpu memory clock
+modules-right = backlight vpn airplane net volume cpu memory battery clock powermenu
+
+[module/bspwm]
+type = internal/bspwm
+format = <label-state> <label-mode>
+
+strip-wsnumbers = true
+pin-workspaces = true
+
+ws-icon-0 = "1;"
+ws-icon-1 = "2;"
+ws-icon-2 = "3;"
+ws-icon-3 = "4;"
+ws-icon-4 = "5;"
+ws-icon-default = ""
+
+label-active = %name%
+label-active-foreground = #ffffff
+label-active-background = #3f3f3f
+label-active-underline = #ffffff
+;label-active-font = 1
+label-active-padding = 3
+
+label-occupied = %name%
+label-occupied-underline = #555555
+;label-occupied-font = 1
+label-occupied-padding = 3
+
+label-urgent = %name%!
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-underline = #9b0a20
+;label-urgent-font = 1
+label-urgent-padding = 3
+
+label-empty = 
+;label-empty-foreground = #55ffffff
+;label-empty-font = 1
+label-empty-padding = 3
+
+[module/backlight]
+type = internal/xbacklight
+
+output = eDP1
+enable-scroll = true
+
+format = <label>
+format-underline = #ffffff
+format-font = 2
+label =  %percentage:3:3%%
+
+
+[module/cpu]
+type = internal/cpu
+format = <label>
+format-underline = #ffffff
+label = %{A1:urxvt -e /usr/bin/htop:} %percentage:02%%%{A}
+format-font = 2
+
+[module/memory]
+type = internal/memory
+format = <label>
+format-underline = #ffffff
+label = %{A1:urxvt -e /usr/bin/htop:}﬙ %percentage_used%%%{A}
+
+;label-font = 1
+;bar-used-width = 10
+;bar-used-indicator = |
+;bar-used-indicator-font = 4
+;bar-used-fill = ─
+;bar-used-fill-font = 4
+;bar-used-empty = ─
+;bar-used-empty-font = 4
+;bar-used-empty-foreground = #99ffffff
+
+[module/clock]
+type = internal/date
+date = %%{T1} %Y-%m-%d %H:%M%%{T-}
+format-underline = #ffffff
+;label-font = 1
+interval = 5
+
+[module/volume]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/pulseaudio-tail.sh
+tail = true
+click-right = exec pavucontrol &
+click-left = $HOME/.config/polybar/scripts/pulseaudio-tail.sh --mute
+scroll-up = $HOME/.config/polybar/scripts/pulseaudio-tail.sh --up
+scroll-down = $HOME/.config/polybar/scripts/pulseaudio-tail.sh --down
+label = %output%
+;label-font = 1 
+format-underline = #ffffff
+;type = internal/volume
+;speaker-mixer = Speaker
+;headphone-mixer = Headphone
+;headphone-id = 9
+;
+;label-volume = volume %percentage%%
+;label-volume-font = 3
+;label-muted = sound muted
+;label-muted-font = 3
+;label-muted-foreground = #99ffffff
+
+[module/battery]
+type = internal/battery
+full-at = 98
+battery = BAT0
+adapter = AC0
+font = 2
+
+format-charging = <animation-charging><label-charging>
+format-charging-underline = #00ff00
+format-charging-font = 2
+label-charging = %percentage%%
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-framerate = 750
+
+
+format-discharging = <animation-discharging><label-discharging>
+format-discharging-underline = #ff0000
+format-discharging-font = 2
+label-discharging = %percentage%%
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-framerate = 750
+
+
+format-full = <label-full>
+format-full-underline = #ffffff
+label-full =  %percentage
+
+
+[module/net]
+type = internal/network
+interface = wlp1s0
+interval = 3.0
+
+
+format-connected = <label-connected>
+format-connected-underline = #00ff00
+label-connected =%{A1:/usr/bin/networkmenu.sh:} %local_ip%%{A}
+
+format-packetloss = <animation-packetloss> <label-connected>
+format-packetloss-underline = #0000ff
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+animation-packetloss-framerate = 500
+
+format-disconnected = <label-disconnected>
+format-disconnected-underline = #ff0000
+label-disconnected = %{A1:/usr/bin/networkmenu.sh:}睊 %ifname%%{A}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+label = %title%
+label-maxlen = 50
+
+[module/filesystem]
+type = internal/fs
+mount-0 = /
+interval = 60
+format-mounted = <label-mounted>
+format-mounted-underline = #ffffff
+label-mounted =  %{A1:urxvt -e /usr/bin/ranger:}%used%/%total%%{A}
+
+[module/powermenu]
+type = custom/script
+exec =  echo ""; 
+interval = 30 
+format = <label>
+label = %output%
+click-left = /home/jhewers/.config/polybar/power_menu.sh
+
+[module/vpn]
+type = custom/script
+exec = /home/jhewers/.config/polybar/scripts/vpn
+interval = 10 
+format = <label>
+label =   %output% 
+format-font = 2
+format-underline = #ffffff
+click-left = urxvt -e /bin/bash -c "nordvpn status; zsh" &
+
+[module/left_seperator]
+type = custom/script
+exec = echo ""
+interval = 100
+
+
+[module/airplane]
+type = custom/script
+exec = /home/jhewers/.config/polybar/scripts/airplane
+tail = false 
+interval = 1
+format-underline = #ffffff
+
+
+; vim:ft=dosini
