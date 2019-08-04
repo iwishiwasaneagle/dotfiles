@@ -3,13 +3,14 @@
 
 # ZSH_TMUX_AUTOSTART="true"
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/jhewers/.oh-my-zsh"
+export ZSH="/home/jhewers/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bullet-train"
+ZSH_THEME="agnoster"
+#"bullet-train"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -98,31 +99,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias rpi="ssh -p 22 jhewers@jhRPi.local"
-alias copy="pwd|xclip -selection clipboard"
-
-# ARM GCC
-# export PATH=$PATH:~/bin/gcc-arm-none-eabi-*/bin
-
-# Flutter
-# export PATH="$PATH:/home/janhewers/opt/flutter/bin"
-
-if [ -z $TMUX ];
-then
-    tmux attach-session -t home || tmux new -t home
-fi
+alias rpi="ssh -p 22 jhewers@192.168.0.102"
 
 
-PATH=~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/opt/flutter/bin
+
+
 eval $(thefuck --alias)
 export EDITOR="/usr/bin/vim"
-alias vpnlist="nmcli con"
-alias vpnup="nmcli con up id uk1003.nordvpn.com.udp"
-alias vpndown="nmcli con down id uk1003.nordvpn.com.udp"
-
-source $(dirname $(gem which colorls))/tab_complete.sh
-alias lc='colorls -lA --sd'
 
 cd() { 
     builtin cd "$@" && ls
 }
+
+source $HOME/.zshrc.bak
+
+
