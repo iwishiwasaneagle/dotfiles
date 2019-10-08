@@ -36,8 +36,9 @@ tmux_conf_theme_left_separator_sub=''
 tmux_conf_theme_right_separator_main=''
 tmux_conf_theme_right_separator_sub=''
 
-set-option -g pane-border-fg colour235 #base02
-set-option -g pane-active-border-fg colour240 #base01
+#set -g mode-style bg=red,fg=green,blink
+#set-option -g pane-border-style style
+#set-option -g pane-active-border-style style
 
 # stop automatic renaming of files
 set-option -g allow-rename off

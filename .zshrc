@@ -113,16 +113,25 @@ then
 fi
 
 
-PATH=~/.local/bin:$PATH:~/.gem/ruby/2.6.0/bin
+export PATH=$PATH:~/.gem/ruby/2.6.0/bin:~/.local/bin
+export PATH=$PATH:/opt/android/flutter/bin
 eval $(thefuck --alias)
-export EDITOR="/usr/bin/vim"
-alias vpnlist="nmcli con"
-alias vpnup="nmcli con up id uk1003.nordvpn.com.udp"
-alias vpndown="nmcli con down id uk1003.nordvpn.com.udp"
+#export EDITOR="/usr/bin/vim"
+#alias vpnlist="nmcli con"
+#alias vpnup="nmcli con up id uk1003.nordvpn.com.udp"
+#alias vpndown="nmcli con down id uk1003.nordvpn.com.udp"
 
-source $(dirname $(gem which colorls))/tab_complete.sh
-alias lc='colorls -lA --sd'
+#source $(dirname $(gem which colorls))/tab_complete.sh
+#alias lc='colorls -lA --sd'
 
 cd() { 
     builtin cd "$@" && ls
 }
+alias startopenproject='sudo docker start openproject'
+alias stopopenproject='sudo docker stop openproject'
+
+
+alias :w="cowsay 'You are not in vim, Jackass'"
+alias :q="cowsay 'You are not in vim, Jackass'"
+alias :x="cowsay 'You are not in vim, Jackass'"
+alias :q!="cowsay 'You are not in vim, Jackass'"
