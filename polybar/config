@@ -87,22 +87,21 @@ enable-scroll = true
 
 format = <label>
 format-underline = #ffffff
-format-font = 2
-label =  %percentage:3:3%%
+label = %{T2}%{T-} %percentage:3:3%%
 
 
 [module/cpu]
 type = internal/cpu
 format = <label>
 format-underline = #ffffff
-label = %{A1:urxvt -e /usr/bin/htop:} %percentage:02%%%{A}
-format-font = 2
+label = %{A1:urxvt -e /usr/bin/htop:}%{T2}%{T-} %percentage:02%%%{A}
+
 
 [module/memory]
 type = internal/memory
 format = <label>
 format-underline = #ffffff
-label = %{A1:urxvt -e /usr/bin/htop:}﬙ %percentage_used%%%{A}
+label = %{A1:urxvt -e /usr/bin/htop:}%{T2}﬙ %{T-}%percentage_used%%%{A}
 
 ;label-font = 1
 ;bar-used-width = 10
@@ -150,9 +149,8 @@ battery = BAT0
 adapter = AC0
 font = 2
 
-format-charging = <ramp-capacity> <label-charging>
+format-charging = %{T2}<ramp-capacity> %{T-}<label-charging>
 format-charging-underline = #00ff00
-format-charging-font = 2
 label-charging = %percentage%%
 
 ramp-capacity-0 = 
@@ -171,7 +169,7 @@ ramp-capacity-4 = 
 ;animation-charging-framerate = 750
 
 
-format-discharging = <ramp-capacity><label-discharging>
+format-discharging = %{T2}<ramp-capacity>%{T-}<label-discharging>
 format-discharging-underline = #ff0000
 format-discharging-font = 2
 label-discharging = %percentage%%

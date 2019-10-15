@@ -13,8 +13,8 @@ sxhkd &
 nordvpn connect &
 
 # Lock screen after 15 minutes of inactivity, or on lid close
-xautolock -time 15 -locker 'i3lock -i /usr/share/backgrounds/lockscreen.png' -detectsleep &
-xss-lock /home/jhewers/.local/bin/lock  &
+xautolock -time 15 -locker 'loginctl --lock-sessions' -detectsleep &
+#xss-lock /home/jhewers/.local/bin/lock  &
 
 # Compton, making stuff pretty
 pkill compton 

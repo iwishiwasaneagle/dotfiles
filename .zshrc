@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias rpi="ssh -p 22 jhewers@192.168.0.102"
-
+alias homevpn="nordvpn disconnect;sudo openvpn --client --config /etc/openvpn/client.conf; nordvpn connect"
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/opt/flutter/bin
