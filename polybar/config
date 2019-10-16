@@ -7,7 +7,8 @@ inherit = bar/top
 monitor = HDMI-0
 
 [bar/top]
-monitor = DVI-I-1
+monitor = DVI-I-1 
+;DVI-I-1
 ;HDMI-0
 ;eDP1
 width = 100%
@@ -56,6 +57,7 @@ format = <label-state> <label-mode>
 strip-wsnumbers = true
 pin-workspaces = true
 
+
 ws-icon-0 = "01;"
 ws-icon-1 = "02;"
 ws-icon-2 = "03;"
@@ -64,7 +66,7 @@ ws-icon-4 = "05;"
 ws-icon-5 = "06;戮"
 ws-icon-6 = "07;"
 
-; State
+
 label-active = %icon%
 label-active-foreground = #ffffff
 label-active-background = #3f3f3f
@@ -75,7 +77,8 @@ label-occupied = %icon%
 label-occupied-underline = #555555
 label-occupied-padding = 3
 
-label-urgent = %icon%
+
+label-urgent = %icon%!
 label-urgent-foreground = #000000
 label-urgent-underline = #9b0a20
 label-urgent-padding = 3
@@ -101,22 +104,21 @@ enable-scroll = true
 
 format = <label>
 format-underline = #ffffff
-format-font = 2
-label =  %percentage:3:3%%
+label = %{T2}%{T-} %percentage:3:3%%
 
 
 [module/cpu]
 type = internal/cpu
 format = <label>
 format-underline = #ffffff
-label = %{A1:urxvt -e /usr/bin/htop:} %percentage:02%%%{A}
-format-font = 2
+label = %{A1:urxvt -e /usr/bin/htop:}%{T2}%{T-} %percentage:02%%%{A}
+
 
 [module/memory]
 type = internal/memory
 format = <label>
 format-underline = #ffffff
-label = %{A1:urxvt -e /usr/bin/htop:}﬙ %percentage_used%%%{A}
+label = %{A1:urxvt -e /usr/bin/htop:}%{T2}﬙ %{T-}%percentage_used%%%{A}
 
 ;label-font = 1
 ;bar-used-width = 10
@@ -164,9 +166,9 @@ battery = BAT0
 adapter = AC0
 font = 2
 
-format-charging = <ramp-capacity> <label-charging>
+
+format-charging = %{T2}<ramp-capacity> %{T-}<label-charging>
 format-charging-underline = #00ff00
-format-charging-font = 2
 label-charging = %percentage%%
 
 ramp-capacity-0 = 
@@ -174,7 +176,6 @@ ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-
 ;animation-charging-0 = 
 ;animation-charging-1 = 
 ;animation-charging-2 = 
@@ -183,9 +184,7 @@ ramp-capacity-4 = 
 ;animation-charging-5 = 
 ;animation-charging-6 = 
 ;animation-charging-framerate = 750
-
-
-format-discharging = <ramp-capacity><label-discharging>
+format-discharging = %{T2}<ramp-capacity>%{T-}<label-discharging>
 format-discharging-underline = #ff0000
 format-discharging-font = 2
 label-discharging = %percentage%%

@@ -3,13 +3,14 @@
 
 # ZSH_TMUX_AUTOSTART="true"
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/jhewers/.oh-my-zsh"
+export ZSH="/home/jhewers/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bullet-train"
+ZSH_THEME="agnoster"
+#"bullet-train"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -98,14 +99,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias rpi="ssh -p 22 jhewers@jhRPi.local"
-alias copy="pwd|xclip -selection clipboard"
+alias rpi="ssh -p 22 jhewers@192.168.0.102"
+alias homevpn="nordvpn disconnect;sudo openvpn --client --config /etc/openvpn/client.conf; nordvpn connect"
 
-# ARM GCC
-# export PATH=$PATH:~/bin/gcc-arm-none-eabi-*/bin
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/opt/flutter/bin
 
-# Flutter
-# export PATH="$PATH:/home/janhewers/opt/flutter/bin"
+
 
 if [ -z $TMUX ];
 then
@@ -123,10 +123,12 @@ eval $(thefuck --alias)
 
 #source $(dirname $(gem which colorls))/tab_complete.sh
 #alias lc='colorls -lA --sd'
+export EDITOR="/usr/bin/vim"
 
 cd() { 
     builtin cd "$@" && ls
 }
+
 alias startopenproject='sudo docker start openproject'
 alias stopopenproject='sudo docker stop openproject'
 
@@ -135,3 +137,8 @@ alias :w="cowsay 'You are not in vim, Jackass'"
 alias :q="cowsay 'You are not in vim, Jackass'"
 alias :x="cowsay 'You are not in vim, Jackass'"
 alias :q!="cowsay 'You are not in vim, Jackass'"
+
+#source $HOME/.zshrc.bak
+
+
+
