@@ -1,2 +1,0 @@
-export MODULE_VARIABLE_TEST="Some text %{F#0000ff}Colored%{F-}"
-
