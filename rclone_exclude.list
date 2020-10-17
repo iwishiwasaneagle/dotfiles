@@ -1,0 +1,11 @@
+.**cache/**
+.dartServer/**
+.gem/**
+.gradle/**
+.steam/**
+**/bin/**
+.local/share/Steam/**
+.android/**
+.vagrant.d/**
+.mozilla/**
+.bundle/**

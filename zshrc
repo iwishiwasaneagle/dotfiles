@@ -9,7 +9,11 @@ export ZSH="/home/jhewers/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+if [[ "$TERM_PROGRAM" == "vscode" || ! -z $SSH_CLIENT ]]; then
+    ZSH_THEME="robbyrussell"
+else
+    ZSH_THEME="agnoster"
+fi
 #"bullet-train"
 
 # Set list of themes to pick from when loading at random
@@ -101,10 +105,13 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$PATH:$HOME/.local/bin
 
-if [ -z $TMUX ];
+if [[ -z $TMUX && "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "android_studio" && -z $SSH_CLIENT && -z $SSH_TTY ]] 
 then
     tmux attach-session -t home || tmux new -t home
 fi
+
+
+
 
 eval $(thefuck --alias)
 export EDITOR="/usr/bin/vim"
@@ -164,3 +171,24 @@ source /usr/share/gazebo/setup.sh
 
 # added by travis gem
 [ ! -s /home/jhewers/.travis/travis.sh ] || source /home/jhewers/.travis/travis.sh
+
+backup_home(){
+    rclone sync -PL /home/jhewers /run/media/jhewers/Backup\ Plus/Seagate/Backup --exclude-from /opt/dotfiles/rclone_exclude.list
+}
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
