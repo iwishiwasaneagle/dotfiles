@@ -3,7 +3,7 @@
 
 # ZSH_TMUX_AUTOSTART="true"
 # Path to your oh-my-zsh installation.
-export ZSH="/home/jhewers/.oh-my-zsh"
+export ZSH="/opt/ohmyzsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -110,10 +110,6 @@ then
     tmux attach-session -t home || tmux new -t home
 fi
 
-
-
-
-eval $(thefuck --alias)
 export EDITOR="/usr/bin/vim"
 
 cd() { 
@@ -125,15 +121,6 @@ alias :q="cowsay 'You are not in vim, Jackass'"
 alias :wq="cowsay 'You are not in vim, Jackass'"
 alias :x="cowsay 'You are not in vim, Jackass'"
 alias :q!="cowsay 'You are not in vim, Jackass'"
-
-alias ubuntu_vm_ssh="ssh jhe-ubuntu-vm"
-alias rpi_ssh="ssh jhrpi"
-alias ubuntu_pi_ssh="ssh ubuntu@192.168.1.69"
-alias ubuntu_vm_start="virsh start ubuntu18.04"
-alias ubuntu_vm_stop="virsh shutdown ubuntu18.04"
-alias ubuntu_vm_save="virsh save ubuntu18.04 $HOME/.cache/libvirt/mem_dump"
-alias ubuntu_vm_restore="virsh restore $HOME/.cache/libvirt/mem_dump"
-
 
 uni_vpn() {
     sudo cat /home/jhewers/.vpn/passwd | sudo openconnect --passwd-on-stdin -u 2198917e --authgroup=Off_Campus_Use gucsasa1.cent.gla.ac.uk
@@ -159,36 +146,4 @@ notify(){
   zsh -c "$@"
   zenity --info --text="$0 finished with code $!" --title="Command executed"
 }
-
-
-alias hornet_share="sudo mount -t cifs //hornet_cc/share /home/jhewers/Shared -o username=smbuser,password=smbuser,uid=1000,gid=1000"
-export ANDROID_HOME=/mnt/SMALL_UN/Android/SDK/
-export PATH="$PATH:/opt/android/flutter/bin"
-export PATH="$PATH:/opt/android/bin/cache/dart-sdk/bin"
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="$PATH":"$HOME/.gem/ruby/2.7.0/bin"
-source /usr/share/gazebo/setup.sh
-
-# added by travis gem
-[ ! -s /home/jhewers/.travis/travis.sh ] || source /home/jhewers/.travis/travis.sh
-
-backup_home(){
-    rclone sync -PL /home/jhewers /run/media/jhewers/Backup\ Plus/Seagate/Backup --exclude-from /opt/dotfiles/rclone_exclude.list
-}
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
