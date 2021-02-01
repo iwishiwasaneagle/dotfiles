@@ -11,6 +11,11 @@ export ZSH="/home/jhewers/.oh-my-zsh"
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 if [[ "$TERM_PROGRAM" == "vscode" || ! -z $SSH_CLIENT ]]; then
     ZSH_THEME="robbyrussell"
+    
+    cd() { 
+        builtin cd "$@" && ls
+    }
+
 else
     ZSH_THEME="agnoster"
 fi
@@ -105,20 +110,14 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$PATH:$HOME/.local/bin
 
-if [[ -z $TMUX && "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "android_studio" && -z $SSH_CLIENT && -z $SSH_TTY ]] 
+if [[ -z $TMUX && "$TERM_PROGRAM" != "vscode" && "$TERM_PROGRAM" != "android_studio" ]] # && -z $SSH_CLIENT && -z $SSH_TTY ]] 
 then
     tmux attach-session -t home || tmux new -t home
 fi
 
-
-
-
 eval $(thefuck --alias)
 export EDITOR="/usr/bin/vim"
 
-cd() { 
-    builtin cd "$@" && ls
-}
 
 alias :w="cowsay 'You are not in vim, Jackass'"
 alias :q="cowsay 'You are not in vim, Jackass'"
@@ -192,3 +191,10 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+alias vpn_connect="sudo systemctl start nordvpnd.service && nordvpn connect"
+alias vpn_disconnect="nordvpn disconnect && sudo systemctl stop nordvpnd.service"
+
+
+
+#curl https://gist.githubusercontent.com/iwishiwasaneagle/2f91f63f3cb0107b94b501aa284a18ca/raw/bd0273893c6626f2509b9fde46e4b7df6a4c67a1/latex_useful_aliases.sh -o /tmp/latex_useful_aliases.sh 2>/dev/null
+#source /tmp/latex_useful_aliases.sh
