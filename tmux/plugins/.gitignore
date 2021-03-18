@@ -1,0 +1,4 @@
+*
+!tpm/
+# Have to whitelist .gitignore lol
+!.gitignore 
