@@ -1,0 +1,144 @@
+\documentclass[12pt,titlepage,oneside]{scrreprt}\RedeclareSectionCommand[beforeskip=0cm, afterskip=0.5cm]{chapter} %setting 0.5cm space before chapter title, 0.2cm space after chapter title
+\usepackage[scaled]{helvet}
+\usepackage[T1]{fontenc}
+
+%% Bibiliography setup
+\usepackage[
+backend=biber,
+style=ieee,
+sorting=none
+]{biblatex}
+\addbibresource{references.bib}
+
+%% Packages
+\usepackage{graphicx} % for figures
+\usepackage{float} % to place figures
+\usepackage{subcaption} % to allow figures in a grid pattern
+\usepackage{booktabs} % nice tables for data
+\usepackage{gensymb} % symbols
+\usepackage[binary-units=true]{siunitx} % SI units
+\usepackage{minted} % code formatting
+\usepackage{listings} % code formatting
+\usepackage{hyperref} % better referencing
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{braket}
+\usepackage{svg} % allow SVGs to be used
+\usepackage{pdfpages}
+%\usepackage[paper=a4]{typearea} % allow landscape pages
+\usepackage{dirtytalk} % \say{quote}
+\usepackage{listings}
+\usepackage{fancyvrb} % \Verb
+\usepackage{url} % better links, with line breaks
+\usepackage[titles]{tocloft}
+
+%% Page geometry
+\usepackage{geometry} 
+\geometry{hmargin=2cm, vmargin=2cm, bindingoffset=0.5cm, includeheadfoot, twoside}
+\setlength{\parskip}{0.5cm}%setting space after each paragraph to 0.5cm
+\usepackage{setspace}
+\onehalfspacing
+
+%% TOC and TOF geometry
+\cftsetindents{figure}{0em}{3.5em}
+\cftsetindents{table}{0em}{3.5em}
+
+%% Redefine say with italics and "" 
+\renewcommand{\say}[1]{\textit{"#1"}}
+\newcommand{\tech}[1]{\textit{#1}}
+
+%% Bold and italic vectors
+\usepackage{bm}
+\renewcommand{\vec}{\bm}
+\newcommand*\mean[1]{\bar{#1}}
+
+%% Labelling eqs, figs, tables, listings
+\numberwithin{equation}{section} % Number equations within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{figure}{section} % Number figures within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{table}{section} % Number tables within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+\numberwithin{listing}{section} % Number listings within sections (i.e. 1.1, 1.2, 2.1, 2.2 instead of 1, 2, 3, 4)
+
+%% Nomenclature
+\usepackage{nomencl}
+%\renewcommand{\nomname}{List of Acronyms}
+\makenomenclature
+%% This code creates the nomenclature groups
+% -----------------------------------------
+\usepackage{etoolbox}
+\renewcommand\nomgroup[1]{%
+  \item[\bfseries
+  \ifstrequal{#1}{A}{Algorithms}{%
+  \ifstrequal{#1}{T}{Technical Terms}{%
+  \ifstrequal{#1}{B}{Official Bodies}{%
+  \ifstrequal{#1}{O}{Other}{}}}}%
+]}
+% -----------------------------------------
+
+
+%% Mono-space code style text
+% \code{} now provides mono-space verbatim text
+\lstset{
+  columns=flexible,
+  breaklines=true
+}
+\def\code#1{\texttt{\lstinline{#1}}}
+%% Cite & refs setup
+% Autocite
+\providecommand*{\listingautorefname}{Listing}
+\renewcommand*{\sectionautorefname}{Section}
+\let\subsectionautorefname\sectionautorefname
+\let\subsubsectionautorefname\sectionautorefname
+% Cite authors with et al.
+\newcommand{\citeauthornum}[1]{\citeauthor*{#1}\cite{#1}}
+%% Bibtex
+\definecolor{mintedbackground}{rgb}{0.95,0.95,0.95}
+%% Minted
+\setminted{
+bgcolor=mintedbackground,
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+linenos,
+breaklines
+}
+%% Font 
+\renewcommand\familydefault{\sfdefault}
+%% SI units
+\newcommand{\mss}{\si{\metre\second^{-2}}}
+\newcommand{\ms}{\si{\metre\second^{-1}}}
+
+%%%%%%%%%%%%
+% DOCUMENT %
+%%%%%%%%%%%%
+
+\begin{document}
+\input{title}
+\pagenumbering{roman}
+
+%% ABSTRACT
+\input{sections/abstract/abstract}
+
+%% TOC, LOF, LOT, etc.
+\tableofcontents
+\listoffigures
+\listoftables
+\input{nomenclature}
+\newpage
+\pagenumbering{arabic}
+
+%% Contents goes below here -------------------------------------------
+
+
+
+%% Contents goes above here -------------------------------------------
+
+
+%% BIBLIOGRAPHY
+\newpage
+\printbibliography
+%% APPENDIX
+% Uncomment if you need an appendix
+% \newpage
+% \appendix
+% \input{sections/appendix/appendix}
+\end{document}
