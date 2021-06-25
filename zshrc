@@ -172,3 +172,9 @@ unset __conda_setup
 
 alias vpn_connect="sudo systemctl start nordvpnd.service && nordvpn connect"
 alias vpn_disconnect="nordvpn disconnect && sudo systemctl stop nordvpnd.service"
+
+# Add matlab to PATH
+PATH=$PATH:/mnt/FAST_UN/MATLAB/R2020b/bin
+
+# Add flutter to path
+PATH=$PATH:/opt/android/flutter/bin

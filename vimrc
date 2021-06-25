@@ -64,6 +64,11 @@ set noswapfile
 set incsearch
 " enable mouse clicks
 set mouse=a
+" show whitespace
+set list 
+" edit conceallevel to 0
+set conceallevel=0
+
 
 " disbale capital q and w commands
 cabbrev W w
