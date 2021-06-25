@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=R2020b
+Type=Application
+Terminal=false
+MimeType=text/x-matlab
+Exec=/mnt/FAST_UN/MATLAB/R2020b/bin/matlab -desktop
+Name=MATLAB
+Icon=matlab
+Categories=Development;Math;Science
+Comment=Scientific computing environment
+StartupNotify=true
