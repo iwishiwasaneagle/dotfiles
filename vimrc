@@ -24,6 +24,8 @@ set background=dark
 colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 
+let mapleader=','
+
 " Input mode settings
 set cursorline
 autocmd InsertEnter * highlight CursorLine guifg=white guibg=#689d6a ctermfg=white ctermbg=blue
@@ -43,6 +45,18 @@ set number relativenumber nu
 autocmd ColorScheme * highlight! link SignColumn LineNr
 set updatetime=100
 
+" Use system keyboard
+set clipboard=unnamedplus
+
+" Makes the backspace key behave like you'd expect, and go through EVERYTHINuG
+set backspace=indent,eol,start
+
+" Searching ignores case unless an upper case letter is present in the query
+set ignorecase smartcase
+
+"Begin searching while typing, hightlighting matches
+set incsearch hlsearch
+
 " Automatic Syntax for code
 syntax on
 set laststatus=2
@@ -60,15 +74,12 @@ set tw=500
 set autoindent smartindent "Smart automatic indent
 " Don't create swap files
 set noswapfile
-" Search iteratively
-set incsearch
 " enable mouse clicks
 set mouse=a
 " show whitespace
 set list 
 " edit conceallevel to 0
 set conceallevel=0
-
 
 " disbale capital q and w commands
 cabbrev W w

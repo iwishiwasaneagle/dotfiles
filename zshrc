@@ -178,3 +178,5 @@ PATH=$PATH:/mnt/FAST_UN/MATLAB/R2020b/bin
 
 # Add flutter to path
 PATH=$PATH:/opt/android/flutter/bin
+
+PATH=$PATH:/home/jhewers/.gem/ruby/3.0.0/bin/

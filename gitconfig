@@ -1,3 +1,6 @@
 [user]
 	name = iwishiwasaneagle
 	email = jh.ewers@gmail.com
+	signingkey = 05A1EE701C6A1EDC
+[commit]
+	gpgSign = true
